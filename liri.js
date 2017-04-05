@@ -1,10 +1,49 @@
+var fs = require("fs");
+var Twitter = require('twitter');
+var twitterKeys = {};
+var client;
+
 // Grab data from keys.js
-// Store keys in a variable.
+fs.readFile("keys.js", "utf8", function(err, data) {
+	if (err) {
+		console.error(err);
+	} else {
+		console.log("We are reading file!");
+
+		// Store keys in a variable.
+		var keys = data.split(" = ");
+		console.log("Is keys working? " + keys);
+
+		//var keysObject = JSON.parse('{"twitterKeys":' + keys[1] + '}');
+		//console.log("Are we getting an object? " + keysObject);
+	}
+});
+
 // Take in one of these commands:
 //
 // my-tweets
 // command: node liri.js my-tweets
 // Shows last 20 tweets and when they were created in terminal.
+
+var mytweets = process.argv[2];
+
+var client = new Twitter({
+	consumer_key: 'AwjAXDZ28e8eGPvVHl6dHE51u',
+	consumer_secret: 'dbpifIyGR6viQ5cCDOyyKlPDDwoxmZvMbhH4LTuXLsrWvqieWb',
+	access_token_key: '3885326479-pYKYP7NfARIPh8fcseYNN8jsvjcW7a5kB0u7oiV',
+	access_token_secret: 'BimsVaruUP3k4JgvYcYN9xtqOVQDuQ1xKxKFfi3N2vf2t'
+});
+
+
+var params = {q: 'node.js'};
+
+client.get('search/tweets', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
+  } else {
+  	console.log(error);
+  }
+});
 //
 // spotify-this-song
 // command: node liri.js spotify-this-song '<song name here>'
