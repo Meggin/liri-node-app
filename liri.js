@@ -1,23 +1,8 @@
 var fs = require("fs");
-var Twitter = require('twitter');
-var twitterKeys = {};
-var client;
+var Twitter = require("twitter");
+var twitterKeysFile = require("./keys.js");
 
-// Grab data from keys.js
-fs.readFile("keys.js", "utf8", function(err, data) {
-	if (err) {
-		console.error(err);
-	} else {
-		console.log("We are reading file!");
-
-		// Store keys in a variable.
-		var keys = data.split(" = ");
-		console.log("Is keys working? " + keys);
-
-		//var keysObject = JSON.parse('{"twitterKeys":' + keys[1] + '}');
-		//console.log("Are we getting an object? " + keysObject);
-	}
-});
+console.log("Can we see what's in keys?" + twitterKeysFile);
 
 // Take in one of these commands:
 //
@@ -27,12 +12,14 @@ fs.readFile("keys.js", "utf8", function(err, data) {
 
 var mytweets = process.argv[2];
 
-var client = new Twitter({
-	consumer_key: 'AwjAXDZ28e8eGPvVHl6dHE51u',
-	consumer_secret: 'dbpifIyGR6viQ5cCDOyyKlPDDwoxmZvMbhH4LTuXLsrWvqieWb',
-	access_token_key: '3885326479-pYKYP7NfARIPh8fcseYNN8jsvjcW7a5kB0u7oiV',
-	access_token_secret: 'BimsVaruUP3k4JgvYcYN9xtqOVQDuQ1xKxKFfi3N2vf2t'
-});
+var client = new Twitter(twitterKeysFile.twitterKeys);
+
+//var client = new Twitter({
+	//consumer_key: 'AwjAXDZ28e8eGPvVHl6dHE51u',
+	//consumer_secret: 'dbpifIyGR6viQ5cCDOyyKlPDDwoxmZvMbhH4LTuXLsrWvqieWb',
+	//access_token_key: '3885326479-pYKYP7NfARIPh8fcseYNN8jsvjcW7a5kB0u7oiV',
+	//access_token_secret: 'BimsVaruUP3k4JgvYcYN9xtqOVQDuQ1xKxKFfi3N2vf2t'
+//});
 
 
 var params = {q: 'node.js'};
