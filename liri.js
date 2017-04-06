@@ -1,51 +1,78 @@
 // **Todo: write a decent intro this time!
 
-// Needed to read files. Not being used yet!
-var fs = require("fs");
-
-var action = process.argv[2];
-
 // Creates empty string to hold song title.
 var songTitle = "";
 
 // Creates empty string to hold movie title.
 var movieTitle = "";
 
-switch (action) {
-	case "my-tweets": 
-	getMyTweets();
-	break;
+// Creates empty string to hold movie title.
+var randomArgument = "";
 
-	case "spotify-this-song":
-	
-	// First get song title argument.
-	songTitle = getSongTitle();
+var argument = "";
 
-	if (songTitle === "") {
-		lookupSpecificSong();
-	} else {
-		// Get song information from Spotify.
-		getSongInfo(songTitle);
+var action = process.argv[2];
+
+doSomething(action, argument);
+
+function doSomething(action, argument) {
+
+	argument = getThirdArgument();
+
+	switch (action) {
+		case "my-tweets": 
+		getMyTweets();
+		break;
+
+		case "spotify-this-song":
+		
+		// First get song title argument.
+		songTitle = argument;
+
+		if (songTitle === "") {
+			lookupSpecificSong();
+		} else {
+			// Get song information from Spotify.
+			getSongInfo(songTitle);
+		}
+		
+		break;
+
+		case "movie-this":
+
+		// First get movie title argument.
+		// **Todo: I must refactor this to have one function
+		// That gets process.argv[3] for every action.
+		// Realizing now that do-what-it-says won't work!
+		movieTitle = argument;
+
+		if (movieTitle === "") {
+			getMovieInfo("Mr. Nobody");
+		} else {
+			getMovieInfo(movieTitle);
+		}
+
+		break;
+
+		case "do-what-it-says": 
+		
+		randomArgument = argument;
+		doWhatItSays(randomArgument);
+		break;
 	}
-	
-	break;
+}
 
-	case "movie-this":
+function getThirdArgument() {
 
-	// First get movie title argument.
-	// **Todo: I tried to re-use on function
-	// For song and movie titles,
-	// But it didn't work.
-	// May get this to work in a refactor!
-	movieTitle = getMovieTitle();
+	// Stores all possible arguments in array.
+	argumentArray = process.argv;
 
-	if (movieTitle === "") {
-		getMovieInfo("Mr. Nobody");
-	} else {
-		getMovieInfo(movieTitle);
+	// Loops through words in node argument.
+	for (var i = 3; i < argumentArray.length; i++) {
+		argument += argumentArray[i];
 	}
 
-	break;
+	return argument;
 }
 
 // Function to show my last 20 tweets.
@@ -185,19 +212,19 @@ function getSongInfo(songTitle) {
 // Rotten Tomatoes URL
 // If the user doesn't type a movie in, output data for movie, 'Mr. Nobody'. 
 
-function getMovieTitle() {
+//function getMovieTitle() {
 
 	// Stores all the song title arguments in array.
-	var movieTitleArgument = process.argv;
+//	var movieTitleArgument = process.argv;
 
 	// Loops through words in node argument.
 	// To be able to pass song title as a parameter to call to Spotify API.
-	for (var i = 3; i < movieTitleArgument.length; i++) {
-		movieTitle += movieTitleArgument[i];
-	}
+//	for (var i = 3; i < movieTitleArgument.length; i++) {
+//		movieTitle += movieTitleArgument[i];
+//	}
 
-	return movieTitle;
-}
+//	return movieTitle;
+//}
 
 function getMovieInfo(movieTitle) {
 	console.log("We are getting the movie!" + movieTitle);
@@ -243,7 +270,36 @@ function getMovieInfo(movieTitle) {
 // and use it to call one of LIRI's commands.
 // It should run spotify-this-song for "I Want it That Way".
 // Change text in that document to test out feature for other commands.
-//
+function doWhatItSays() {
+	// Needed to read files. Not being used yet!
+	var fs = require("fs");
+
+	fs.readFile("random.txt", "utf8", function(err, data) {
+		if (err) {
+			console.error(err);
+		} else {
+
+
+			randomArray = data.split(",");
+
+
+			console.log(randomArray);
+
+			action = randomArray[0];
+
+			console.log("Random Action: " + action);
+
+			argument = randomArray[1];
+
+			console.log("Random argument: " + argument);
+
+			doSomething(action, argument);
+		}
+	});
+}
+
+
+
 // Bonus
 // In addition to logging data to terminal,
 // output data to .txt file called log.txt.
