@@ -8,6 +8,9 @@ var action = process.argv[2];
 // Creates empty string to hold song title.
 var songTitle = "";
 
+// Creates empty string to hold movie title.
+var movieTitle = "";
+
 switch (action) {
 	case "my-tweets": 
 	getMyTweets();
@@ -25,6 +28,23 @@ switch (action) {
 		getSongInfo(songTitle);
 	}
 	
+	break;
+
+	case "movie-this":
+
+	// First get movie title argument.
+	// **Todo: I tried to re-use on function
+	// For song and movie titles,
+	// But it didn't work.
+	// May get this to work in a refactor!
+	movieTitle = getMovieTitle();
+
+	if (movieTitle === "") {
+		getMovieInfo("Mr. Nobody");
+	} else {
+		getMovieInfo(movieTitle);
+	}
+
 	break;
 }
 
@@ -151,9 +171,6 @@ function getSongInfo(songTitle) {
 }
 
 
-
-
-
 // movie-this
 // command: node liri.js movie-this '<movie name here>'
 // Shows the following information about the movie in the terminal:
@@ -167,7 +184,59 @@ function getSongInfo(songTitle) {
 // Rotten Tomatoes rating
 // Rotten Tomatoes URL
 // If the user doesn't type a movie in, output data for movie, 'Mr. Nobody'. 
-//
+
+function getMovieTitle() {
+
+	// Stores all the song title arguments in array.
+	var movieTitleArgument = process.argv;
+
+	// Loops through words in node argument.
+	// To be able to pass song title as a parameter to call to Spotify API.
+	for (var i = 3; i < movieTitleArgument.length; i++) {
+		movieTitle += movieTitleArgument[i];
+	}
+
+	return movieTitle;
+}
+
+function getMovieInfo(movieTitle) {
+	console.log("We are getting the movie!" + movieTitle);
+
+	// Include the request npm package.
+	var request = require("request");
+
+	// Run a request to the OMDB API with the movie specified
+	var queryUrl = "http://www.omdbapi.com/?t=" + movieTitle + "&y=&plot=short&tomatoes=true&r=json";
+	// This line is just to help us debug against the actual URL.
+	console.log(queryUrl);
+
+	request(queryUrl, function(error, response, body) {
+	  // If the request is successful
+	  if (!error && response.statusCode === 200) {
+	    
+	    // Parse the body of the site and recover movie info.
+	    var movie = JSON.parse(body);
+
+	    console.log(movie);
+
+	    // Print out movie info.
+	    console.log("Movie Title: " + movie.Title);
+	    console.log("Release Year: " + movie.Year);
+	    console.log("IMDB Rating: " + movie.imdbRating);
+	    console.log("Country Produced In: " + movie.Country);
+	    console.log("Language: " + movie.Language);
+	    console.log("Plot: " + movie.Plot);
+	    console.log("Actors: " + movie.Actors);
+
+	    // Need to use value in array,
+	    // As rotten tomato rating value is always n/a.
+	    // Seems like a little bug in API?
+	    console.log("Rotten Tomatoes Rating: " + movie.Ratings[2].Value);
+	    console.log("Rotten Tomatoes URL: " + movie.tomatoURL);
+	  }
+	});
+}
+
 // do-what-it-says
 // command: node liri.js do-what-it-says
 // Using the fs Node package, take the text inside random.txt,
