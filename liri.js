@@ -1,36 +1,42 @@
+
+
+// Needed to read files. Not being used yet!
 var fs = require("fs");
+
+// Access twitter API through twitter module.
 var Twitter = require("twitter");
+
+// Access twitter keys in keys.js.
 var twitterKeysFile = require("./keys.js");
 
-console.log("Can we see what's in keys?" + twitterKeysFile);
+// Takes in my-tweets command.
+var my%2Dtweets = process.argv[2];
 
-// Take in one of these commands:
-//
-// my-tweets
-// command: node liri.js my-tweets
-// Shows last 20 tweets and when they were created in terminal.
-
-var mytweets = process.argv[2];
-
+// Passes twitter keys into call to Twitter API.
 var client = new Twitter(twitterKeysFile.twitterKeys);
 
-//var client = new Twitter({
-	//consumer_key: 'AwjAXDZ28e8eGPvVHl6dHE51u',
-	//consumer_secret: 'dbpifIyGR6viQ5cCDOyyKlPDDwoxmZvMbhH4LTuXLsrWvqieWb',
-	//access_token_key: '3885326479-pYKYP7NfARIPh8fcseYNN8jsvjcW7a5kB0u7oiV',
-	//access_token_secret: 'BimsVaruUP3k4JgvYcYN9xtqOVQDuQ1xKxKFfi3N2vf2t'
-//});
+// Search parameters includes my tweets up to last 20 tweets;
+var params = {q: '@MegginKearney', count: 20};
 
-
-var params = {q: 'node.js'};
-
+// Shows last 20 tweets and when created in terminal.
 client.get('search/tweets', params, function(error, tweets, response) {
   if (!error) {
-    console.log(tweets);
+
+  	// Check we can access tweets statuses array.
+  	console.log(tweets.statuses);
+
+  	// Loop through tweets and print out tweet text and create date.
+  	for (var i = 0; i < tweets.statuses.length; i++) {
+  		var tweetText = tweets.statuses[i].text;
+  		console.log("Here's the tweet's text: " + tweetText);
+  		var tweetCreationDate = tweets.statuses[i].created_at;
+  		console.log("Here's the tweet's creation date: " + tweetCreationDate);
+  	}
   } else {
   	console.log(error);
   }
 });
+
 //
 // spotify-this-song
 // command: node liri.js spotify-this-song '<song name here>'
