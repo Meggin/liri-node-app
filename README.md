@@ -1,7 +1,7 @@
 # liri-node-app
 
 LIRI is a Language Interpretation and Recognition Interface.
-Use LIRI to get your latest tweets, check out information an a song,
+Use LIRI to get your latest tweets, find out about a song,
 or a movie, or just choose a random action from your own random file.
 
 ## Installs
@@ -33,7 +33,7 @@ Here's a quick rundom of the commands you can use in LIRI.
 
 Retrieves up to your latest 20 tweets:
 
-`node liri.js 'my-tweets'`
+`node liri.js my-tweets`
 
 ### Get Song Info
 
