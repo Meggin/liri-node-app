@@ -16,7 +16,7 @@ It uses the npm node module, 'simple-node-logger', for it's logging solution.
 // NPM module used to access Twitter API.
 var Twitter = require("twitter");
 
-// Used to access twitter keys in local file, keys.js.
+// Used to access Twitter keys in local file, keys.js.
 var twitterKeysFile = require("./keys.js");
 
 // NPM module used to access Spotify API.
@@ -109,7 +109,7 @@ function doSomething(action, argument) {
 	}
 }
 
-// Returns option third argument, for example,
+// Returns optional third argument, for example,
 // when requesting song information, include a song title.
 function getThirdArgument() {
 
@@ -120,14 +120,13 @@ function getThirdArgument() {
 	for (var i = 3; i < argumentArray.length; i++) {
 		argument += argumentArray[i];
 	}
-
 	return argument;
 }
 
 // Function to show my last 20 tweets.
 function getMyTweets() {
 	
-	// Passes twitter keys into call to Twitter API.
+	// Passes Twitter keys into call to Twitter API.
 	var client = new Twitter(twitterKeysFile.twitterKeys);
 
 	// Search parameters includes my tweets up to last 20 tweets;
@@ -150,22 +149,22 @@ function getMyTweets() {
 	});
 }
 
-// Calls spotify API to retrieve song information for song title.
+// Calls Spotify API to retrieve song information for song title.
 function getSongInfo(songTitle) {
 
-	// Calls spotify API to retrieve a track.
+	// Calls Spotify API to retrieve a track.
 	spotify.search({type: 'track', query: songTitle}, function(err, data) {
 		if (err) {
 			logOutput.error(err);
 			return
 		}
 
-		/* The spotify node module defaults to 20 no matter what.
+		/* The Spotify node module defaults to 20 no matter what.
 		Attempted to add a limit, which seems to do nothing.
 		Homework requirements suggest we should only return one song.
 		Used array properties to retrict songs returns.
 		There could very well be a better way to do this.
-		But it's as close to requirements I could get using spotify module.
+		But it's as close to requirements I could get using Spotify module.
 		*/
 		var artistsArray = data.tracks.items[0].album.artists;
 
@@ -192,7 +191,7 @@ function getSongInfo(songTitle) {
 // When no song title provided, defaults to specific song, The Sign.
 function lookupSpecificSong() {
 
-	// Calls spotify API to retrieve a specific track, The Sign, Ace of Base.
+	// Calls Spotify API to retrieve a specific track, The Sign, Ace of Base.
 	spotify.lookup({type: 'track', id: '3DYVWvPh3kGwPasp7yjahc'}, function(err, data) {
 		if (err) {
 			logOutput.error(err);
@@ -231,7 +230,7 @@ function getMovieInfo(movieTitle) {
 	    logOutput("Actors: " + movie.Actors);
 
 	    // Had to set to array value, as there seems to be a bug in API response,
-	    // that always returns N/A for movie.tomatoeRatings.
+	    // that always returns N/A for movie.tomatoRating.
 	    logOutput("Rotten Tomatoes Rating: " + movie.Ratings[2].Value);
 	    logOutput("Rotten Tomatoes URL: " + movie.tomatoURL);
 	  }
