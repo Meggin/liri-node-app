@@ -1,0 +1,38 @@
+14:06:20.796 INFO  Artist: Ace of Base 
+14:06:20.796 INFO  Song: The Sign 
+14:06:20.796 INFO  Spotify Preview URL: https://p.scdn.co/mp3-preview/5ca0168d6b58e0f993b2b741af90ecc7c9b16893?cid=null 
+14:06:20.796 INFO  Album Name: Greatest Hits 
+14:06:36.833 INFO  Artist(s): Tribal Seeds 
+14:06:36.834 INFO  Song: In Your Eyes 
+14:06:36.834 INFO  Spotify Preview URL: https://p.scdn.co/mp3-preview/64522d26cd34b251fb5d9753338586ac60e8886c?cid=null 
+14:06:36.834 INFO  Album Name: SoundWaves EP 
+14:06:50.441 INFO  Tweet Text: @MegginKearney Any blog about it please? Interested to know how did you do it? 
+14:06:50.441 INFO  Tweet Creation Date: Tue Apr 04 07:08:40 +0000 2017 
+14:06:50.442 INFO  Tweet Text: RT @MegginKearney: Today I took over 1 second off the load time for an internal site. Almost giddy. More seconds to go! 
+14:06:50.442 INFO  Tweet Creation Date: Tue Apr 04 06:32:35 +0000 2017 
+14:06:50.442 INFO  Tweet Text: @MegginKearney @dalmaer 🙌💕 
+14:06:50.442 INFO  Tweet Creation Date: Tue Apr 04 03:17:11 +0000 2017 
+14:06:50.442 INFO  Tweet Text: https://t.co/qME9TfGYi9 ht @MegginKearney 
+14:06:50.442 INFO  Tweet Creation Date: Mon Apr 03 18:13:09 +0000 2017 
+14:07:03.593 INFO  Movie Title: Mr. Nobody 
+14:07:03.593 INFO  Release Year: 2009 
+14:07:03.593 INFO  IMDB Rating: 7.9 
+14:07:03.593 INFO  Country Produced In: Belgium, Germany, Canada, France 
+14:07:03.593 INFO  Language: English, Mohawk 
+14:07:03.593 INFO  Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible. 
+14:07:03.593 INFO  Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham 
+14:07:03.593 INFO  Rotten Tomatoes Rating: 63/100 
+14:07:03.593 INFO  Rotten Tomatoes URL: http://www.rottentomatoes.com/m/mr-nobody/ 
+14:07:16.714 INFO  Movie Title: Rogue One 
+14:07:16.714 INFO  Release Year: 2016 
+14:07:16.714 INFO  IMDB Rating: 8.0 
+14:07:16.714 INFO  Country Produced In: USA, UK 
+14:07:16.714 INFO  Language: English 
+14:07:16.714 INFO  Plot: The Rebel Alliance makes a risky move to steal the plans for the Death Star, setting up the epic saga to follow. 
+14:07:16.714 INFO  Actors: Felicity Jones, Diego Luna, Alan Tudyk, Donnie Yen 
+14:07:16.714 INFO  Rotten Tomatoes Rating: 65/100 
+14:07:16.714 INFO  Rotten Tomatoes URL: http://www.rottentomatoes.com/m/star_wars_anthology_rogue_one/ 
+14:07:33.469 INFO  Artist(s): Backstreet Boys 
+14:07:33.470 INFO  Song: I Want It That Way 
+14:07:33.470 INFO  Spotify Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=null 
+14:07:33.470 INFO  Album Name: The Hits--Chapter One 

@@ -17,6 +17,10 @@ lists dependent node packages, but for your convenvice, these are the ones to in
 
 `npm install spotify`
 
+### Request
+
+`npm install request`
+
 ### FS
 
 `npm install fs`
